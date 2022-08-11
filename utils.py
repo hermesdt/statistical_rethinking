@@ -2,6 +2,7 @@ import random
 import numpy as np
 from scipy.stats.distributions import bernoulli
 import pandas as pd
+import pymc as pm
 
 def logit(p):
     return np.log(p) - np.log(1 - p)
@@ -29,3 +30,9 @@ def sim_happiness(seed=1977 , N_years=1000 , max_age=65 , N_births=20 , aom=18):
             M = M[~deaths]
                 
     return pd.DataFrame({"age": A, "happiness": H, "married": M})
+
+def link(model, trace, progressbar=False, var_names=None, **datas):
+    with model:
+        for data, value in datas.items():
+            model.set_data(data, value)
+        return pm.sample_posterior_predictive(trace, progressbar=progressbar, var_names=var_names)

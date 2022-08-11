@@ -15,3 +15,4 @@ dependencies:
   - jax
   - sf-hamilton>=1.8.0,<2
   - pandas-profiling
+  - scikit-learn=1.1.2
