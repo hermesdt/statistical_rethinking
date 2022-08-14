@@ -36,3 +36,6 @@ def link(model, trace, progressbar=False, var_names=None, **datas):
         for data, value in datas.items():
             model.set_data(data, value)
         return pm.sample_posterior_predictive(trace, progressbar=progressbar, var_names=var_names)
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
