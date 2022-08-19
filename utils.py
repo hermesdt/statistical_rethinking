@@ -38,4 +38,4 @@ def link(model, trace, progressbar=False, var_names=None, **datas):
         return pm.sample_posterior_predictive(trace, progressbar=progressbar, var_names=var_names)
 
 def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
+    return np.exp(x) / (1 + np.exp(x))
